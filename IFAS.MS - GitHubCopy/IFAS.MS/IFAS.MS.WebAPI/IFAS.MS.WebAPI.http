@@ -1,0 +1,6 @@
+@IFAS.MS.WebAPI_HostAddress = http://localhost:5148
+
+GET {{IFAS.MS.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

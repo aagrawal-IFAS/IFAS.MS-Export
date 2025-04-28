@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-IFAS.MS.Job-0802afb3-0601-40e4-9f0a-10bed7741793</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.18" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IFAS.MS.AdaptiveTransmissionAnalyzer\IFAS.MS.AdaptiveTransmissionAnalyzer.csproj" />
+    <ProjectReference Include="..\IFAS.MS.Common\IFAS.MS.Common.csproj" />
+    <ProjectReference Include="..\IFAS.MS.Models\IFAS.MS.Models.csproj" />
+    <ProjectReference Include="..\IFAS.MS.Synchronization\IFAS.MS.Synchronization.csproj" />
+  </ItemGroup>
+</Project>
