@@ -37,7 +37,7 @@ namespace IFAS.MS.Job
                         var client = _httpClientFactory.CreateClient();
 
                         using var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(exportableData), Encoding.UTF8, "application/json");
-                        using var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}//Exportdata") { Content = content };
+                        using var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}\\Exportdata") { Content = content };
 
                         var response = await client.SendAsync(request);                       
 
@@ -71,21 +71,23 @@ namespace IFAS.MS.Job
                         var client = _httpClientFactory.CreateClient();
 
                         using var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(exportableData), Encoding.UTF8, "application/json");
-                        using var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}//GetExportedDataStatus") { Content = content };
+                        using var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}\\GetExportedDataStatus") { Content = content };
 
                         var response = await client.SendAsync(request);
 
-                        if (response.IsSuccessStatusCode == false)
+                        if(response.IsSuccessStatusCode)
                         {
                             var responseData = await response.Content.ReadAsStringAsync();
 
                             var exportedDataStatus = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<SSReplicationDataHandshake>>(responseData);
 
-                            if(exportedDataStatus?.Any() ?? false)
+                            if (exportedDataStatus?.Any() ?? false)
                             {
                                 await _exportService.UpdateExportHandshakeData(responseData);
                             }
-
+                        }
+                        else
+                        {
                             response.EnsureSuccessStatusCode();
                         }
                     }

@@ -38,7 +38,7 @@ namespace IFAS.MS.WebAPI.Controllers
         }
 
         [HttpPost, Route("api/MSSynchronization/GetExportedDataStatus")]
-        public IEnumerable<SSReplicationDataHandshake> GetExportedDataStatus(IEnumerable<SSReplicationData> replicationData)
+        public IEnumerable<SSReplicationDataHandshake> GetExportedDataStatus(IEnumerable<SSReplicationDataHandshake> replicationData)
         {
             try
             {
