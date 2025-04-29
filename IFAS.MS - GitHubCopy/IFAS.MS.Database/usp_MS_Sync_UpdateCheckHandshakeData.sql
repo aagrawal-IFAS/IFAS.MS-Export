@@ -34,8 +34,8 @@ BEGIN
 		FROM OPENJSON(@pExportHandShakeData)  
 		WITH  
 		(  
-			SSReplicationDataUID UNIQUEIDENTIFIER,  			
-			SSReplicationStatusUID UNIQUEIDENTIFIER  
+			ssReplicationDataUID UNIQUEIDENTIFIER,  			
+			ssReplicationStatusUID UNIQUEIDENTIFIER  
 		)  
 		WHERE SSReplicationDataUID <>'00000000-0000-0000-0000-000000000000'
 
@@ -44,7 +44,7 @@ BEGIN
 			UPDATE R
 				SET R.SSReplicationStatusUID = T.SSReplicationStatusUID
 			FROM SSReplicationData R
-			JOIN #tmpData T ON T.SSReplicationDataUID = R.SSReplicationDataUID
+			JOIN #tmpData T ON T.ssReplicationDataUID = R.SSReplicationDataUID
 		END
 		COMMIT TRANSACTION
 	END TRY

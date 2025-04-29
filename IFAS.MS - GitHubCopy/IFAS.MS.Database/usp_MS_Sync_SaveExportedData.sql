@@ -113,8 +113,8 @@ BEGIN
 			T.IsDelete,  
 			T.SSDataReplicationType,  
 			T.IsOnlyToDisconnectedBuyingStation,  
-			T.MDSecondaryBranchUID,  
-			T.MDDisconnectedBuyingStationSourceUID,  
+			CASE WHEN T.MDSecondaryBranchUID = CAST(CAST(0 AS BINARY) AS UNIQUEIDENTIFIER) THEN NULL ELSE T.MDSecondaryBranchUID END,    
+			CASE WHEN T.MDDisconnectedBuyingStationSourceUID = CAST(CAST(0 AS BINARY) AS UNIQUEIDENTIFIER) THEN NULL ELSE T.MDDisconnectedBuyingStationSourceUID END,  
 			@vReadyToProcessId 
 		FROM #tmpData T
 		LEFT JOIN SSReplicationData D (NOLOCK) ON D.SSReplicationDataUID = T.SSReplicationDataUID

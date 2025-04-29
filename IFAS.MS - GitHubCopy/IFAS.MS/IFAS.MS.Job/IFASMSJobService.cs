@@ -36,7 +36,7 @@ namespace IFAS.MS.Job
                         var exportableData = _exportService.GetExportData(_settings.CompanyId, AdaptiveTransmissionAnalyzer.AdaptiveTransmissionAnalyzer.CurrentObjectCount).GetAwaiter().GetResult();
                         var client = _httpClientFactory.CreateClient();
 
-                        using var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(exportableData), Encoding.UTF8, "application/json");
+                        using var content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(exportableData),null, "application/json");
                         using var request = new HttpRequestMessage(HttpMethod.Post, $"{serviceUrl}\\Exportdata") { Content = content };
 
                         var response = await client.SendAsync(request);                       

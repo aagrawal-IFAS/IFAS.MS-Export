@@ -33,7 +33,7 @@ BEGIN
 	SELECT       
 		@vReadyToProcessStatusId = SSReplicationStatusUID       
 	FROM SSReplicationStatus (NOLOCK)       
-	WHERE InternalStatus = 6   
+	WHERE InternalStatus = 5   
 
 
   
